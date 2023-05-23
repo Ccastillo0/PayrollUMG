@@ -102,6 +102,10 @@ export class UserManageComponent implements OnInit {
 
   }
 
+  UserID(userId: number): void {
+
+  }
+
 
 }
 
