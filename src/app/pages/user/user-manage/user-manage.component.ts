@@ -91,23 +91,15 @@ export class UserManageComponent implements OnInit {
   }
 
   UserEdit(userId: number): void {
-    // this._userService.UserEdit(userId, this.form.value).subscribe(resp) => {
-    //   // if (resp.isSuccess){
-    //   //   this._alert.success('')
+    this._userService.UserEdit(userId, this.form.value).subscribe((resp) => {
+      if (resp.isSuccess) {
+        this._alert.success('Excelente', resp.message)
+        this._dialogRef.close(true)
 
-    //   // }
-  }
-
-  UserDelete(userId: number): void { //ccccccc
-
-  }
-
-  UserID(userId: number): void { //cccccccc
+      } else {
+        this._alert.success('Atencion', resp.message);
+      }
+    })
 
   }
-
-
 }
-
-
-

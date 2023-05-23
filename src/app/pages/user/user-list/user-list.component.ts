@@ -9,6 +9,7 @@ import { UserApi } from 'src/app/response/user/user.response';
 import { UserService } from 'src/app/services/user.service';
 import { UserManageComponent } from '../user-manage/user-manage.component';
 import { componentSettings } from './user-list-config';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'vex-user-list',
@@ -67,9 +68,9 @@ export class UserListComponent implements OnInit {
     this._dialog.open(UserManageComponent, {
       disableClose: true,
       width: '600px'
-    }).afterClosed().subscribe( 
+    }).afterClosed().subscribe(
       (res) => {
-        if(res){
+        if (res) {
           this.formatGetInputs()
         }
       }
@@ -78,10 +79,10 @@ export class UserListComponent implements OnInit {
   }
 
   rowClick(e: any) {
-    console.log("RowClick",e)
+    console.log("RowClick", e)
     let action = e.action
     let user = e.row
-    
+
     switch (action) {
       case "edit":
         this.UserEdit(user)
@@ -107,14 +108,33 @@ export class UserListComponent implements OnInit {
       width: '400px'
     })
     dialogRef
-    .afterClosed().subscribe((res) => {
-      if(res){
-        this.formatGetInputs()
-      }
-    });
+      .afterClosed().subscribe((res) => {
+        if (res) {
+          this.formatGetInputs()
+        }
+      });
   }
 
   UserRemove(user: any) {
-
+    Swal.fire({
+      title: '¿Realmente deseas eliminar el usuario - ' + user.username + ' ?',
+      text: "Se borrara de forma permanente",
+      icon: "warning",
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: 'rgb(210, 155, 253)',
+      cancelButtonColor: 'rgb(79, 109, 253',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar',
+      width: 430
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._UserService.UserRemove(user.userId).subscribe(() => this.formatGetInputs(),
+          (error) => {
+            // Manejar el error de solicitud aquí
+          });
+      }
+    })
   }
+
 }
