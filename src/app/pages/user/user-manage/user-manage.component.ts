@@ -98,11 +98,11 @@ export class UserManageComponent implements OnInit {
     //   // }
   }
 
-  UserDelete(userId: number): void { //ssssssss
+  UserDelete(userId: number): void { //ccccccc
 
   }
 
-  UserID(userId: number): void { //ssssssss
+  UserID(userId: number): void { //cccccccc
 
   }
 
