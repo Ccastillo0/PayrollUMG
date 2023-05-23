@@ -98,6 +98,11 @@ export class UserManageComponent implements OnInit {
     //   // }
   }
 
+  UserDelete(userId: number): void {
+
+  }
+
+
 }
 
 
