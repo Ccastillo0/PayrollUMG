@@ -25,6 +25,13 @@ const childrenRoutes: VexRoutes = [
     }
   },
   {
+    path: 'Allowance',
+    loadChildren: () => import('./pages/allowance/allowance.module').then(m => m.AllowanceModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

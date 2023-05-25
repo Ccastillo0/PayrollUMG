@@ -3,7 +3,7 @@
 export interface TableColumn<T> {
   label: string;
   property: keyof T | string;
-  type: 'text' | 'textTruncate' | 'image' | 'badge' | 'progress' | 'checkbox' | 'button' | 'periodo' | 'date' | 'datetime' | 'clickButton' | 'currency' | 'byteConversion' | 'buttonGroup';
+  type: 'text' | 'textTruncate' | 'identificador' |  'image' | 'badge' | 'progress' | 'checkbox' | 'button' | 'periodo' | 'date' | 'datetime' | 'clickButton' | 'currency' | 'byteConversion' | 'buttonGroup';
   buttonItems?: buttonItems<T>[];
   visible?: boolean;
   cssClasses?: string[];

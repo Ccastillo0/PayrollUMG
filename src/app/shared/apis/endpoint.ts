@@ -12,7 +12,6 @@ export const endpoint ={
     //AUTH
     GENERATE_TOKE: 'User/Generate/Token',
 
-
     //ALLOWANCE
     LIST_ALLOWANCE: 'Allowance',
     LIST_SELECT_ALLOWANCE : 'Allowance/Select',

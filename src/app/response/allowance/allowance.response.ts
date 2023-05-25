@@ -1,12 +1,10 @@
-export interface User {
-    userId: Number
-    username: string
-    password: string
-    email: string
-    createdAt: Date
+export interface Allowance {
+    allowanceId: number
+    description: string
+    amount: number
 }
 
-export interface UserApi{
+export interface AllowanceApi{
     data: any
     totalRecords: number
 }
