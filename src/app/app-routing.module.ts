@@ -25,6 +25,20 @@ const childrenRoutes: VexRoutes = [
     }
   },
   {
+    path: 'Deduction',
+    loadChildren: () => import('./pages/deduction/deduction.module').then(m => m.DeductionModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  {
+    path: 'Payroll',
+    loadChildren: () => import('./pages/payroll/payroll.module').then(m => m.PayrollModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

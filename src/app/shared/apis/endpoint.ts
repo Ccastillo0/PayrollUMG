@@ -37,7 +37,7 @@ export const endpoint ={
     PAYROLL_EDIT: 'Payroll/Edit/',
     PAYROLL_REMOVE: 'Payroll/Remove/',
 }
-//ffff
+//fff
 export const httpOptions={
     headers: new HttpHeaders({
         "Content-Type": "application/json"
