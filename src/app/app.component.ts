@@ -83,6 +83,18 @@ export class AppComponent {
 
       {
         type: 'link',
+        label: 'Deduction',
+        route: 'Deduction',
+        icon: icUser
+      },
+      {
+        type: 'link',
+        label: 'Payroll',
+        route: 'Payroll',
+        icon: icUser
+      },
+      {
+        type: 'link',
         label: 'Department',
         route: 'Department',
         icon: icUser
