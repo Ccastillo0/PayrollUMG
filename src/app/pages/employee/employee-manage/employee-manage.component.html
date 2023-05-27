@@ -1,0 +1,104 @@
+<form (ngSubmit)="EmployeeSave()" [formGroup]="form">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+        <h2 class="headline m-0 text-xl text-accent" fxFlex="auto">
+            <strong>Gestion de Employee</strong>
+        </h2>
+        <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+            <mat-icon [icIcon]="icClose"></mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>firstName</mat-label>
+                <input matInput formControlName="firstName">
+                <mat-error *ngIf="form.get('firstName').hasError('required')">
+                    firstName Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>lastName</mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="form.get('lastName').hasError('required')">
+                    lastName Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>dpi</mat-label>
+                <input matInput formControlName="dpi">
+                <mat-error *ngIf="form.get('dpi').hasError('required')">
+                    dpi Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>DateOfBirth</mat-label>
+                <input matInput [matDatepicker]="dateOfBirthPicker" formControlName="dateOfBirth" readonly>
+                <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+                <mat-error *ngIf="form.get('dateOfBirth').hasError('required')">
+                    DateOfBirth Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>hireDate</mat-label>
+                <input matInput [matDatepicker]="hireDatePicker" formControlName="hireDate" readonly>
+                <mat-datepicker-toggle matSuffix [for]="hireDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #hireDatePicker></mat-datepicker>
+                <mat-error *ngIf="form.get('hireDate').hasError('required')">
+                    hireDate Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>baseSalary</mat-label>
+                <input matInput formControlName="baseSalary">
+                <mat-error *ngIf="form.get('baseSalary').hasError('required')">
+                    baseSalary Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>departmentId</mat-label>
+                <input matInput formControlName="departmentId">
+                <mat-error *ngIf="form.get('departmentId').hasError('required')">
+                    departmentId Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>positionId</mat-label>
+                <input matInput formControlName="positionId">
+                <mat-error *ngIf="form.get('positionId').hasError('required')">
+                    positionId Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button"> CANCELAR </button>
+        <button color="purple" class="bg-accent text-accent-contrast" mat-button type="submit" [disabled]="!form.valid">
+            GUARDAR
+        </button>
+    </mat-dialog-actions>
+</form>

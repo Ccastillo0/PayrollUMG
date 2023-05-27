@@ -1,6 +1,7 @@
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 export class GenericValidators {
+ 
     /**
     * Validar que todos los caracteres sean solo números o caracteres de alfabeto
     * @param control valor de control de formulario

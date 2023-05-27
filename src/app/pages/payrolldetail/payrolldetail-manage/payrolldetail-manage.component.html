@@ -1,49 +1,51 @@
-<form (ngSubmit)="UserSave()" [formGroup]="form">
+<form (ngSubmit)="PayrolldetailSave()" [formGroup]="form">
     <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
         <h2 class="headline m-0 text-xl text-accent" fxFlex="auto">
-            <strong>Gestion de Usuarios</strong>
+            <strong>Gestion de PayrollDetail</strong>
         </h2>
         <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
             <mat-icon [icIcon]="icClose"></mat-icon>
         </button>
     </div>
     <mat-dialog-content>
+
         <div fxLayout="row" fxLayoutGap="16px">
             <mat-form-field appearance="outline" fxFlex="100">
-                <mat-label>ID Usuario</mat-label>
-                <input matInput formControlName="userId">
-                <mat-error *ngIf="form.get('userId').hasError('required')">
-                  ID Requerido
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <mat-dialog-content>
-        <div fxLayout="row" fxLayoutGap="16px">
-            <mat-form-field appearance="outline" fxFlex="100">
-                <mat-label>UserName</mat-label>
-                <input matInput formControlName="username">
-                <mat-error *ngIf="form.get('username').hasError('required')">
-                  UserName Requerido
-                </mat-error>
-            </mat-form-field>
-        </div>
-        </mat-dialog-content>
-        <div fxLayout="row" fxLayoutGap="16px">
-            <mat-form-field appearance="outline" fxFlex="100">
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password">
-                <mat-error *ngIf="form.get('password').hasError('required')">
-                   Password Requerido
+                <mat-label>payrollId</mat-label>
+                <input matInput formControlName="payrollId">
+                <mat-error *ngIf="form.get('payrollId').hasError('required')">
+                    payrollId Requerido
                 </mat-error>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayoutGap="16px">
             <mat-form-field appearance="outline" fxFlex="100">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
-                <mat-error *ngIf="form.get('email').hasError('required')">
-                    Email Requerido
+                <mat-label>conceptId</mat-label>
+                <input matInput formControlName="conceptId">
+                <mat-error *ngIf="form.get('conceptId').hasError('required')">
+                    conceptId Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>conceptType</mat-label>
+                <input matInput formControlName="conceptType">
+                <mat-error *ngIf="form.get('conceptType').hasError('required')">
+                    conceptType Requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>amount</mat-label>
+                <input matInput formControlName="amount">
+                <mat-error *ngIf="form.get('amount').hasError('required')">
+                    amount Requerido
                 </mat-error>
             </mat-form-field>
         </div>
