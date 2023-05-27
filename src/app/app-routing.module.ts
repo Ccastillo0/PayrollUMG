@@ -31,6 +31,24 @@ const childrenRoutes: VexRoutes = [
       containerEnabled: true
     }
   },
+  
+  {
+    path: 'Department',
+    loadChildren: () => import('./pages/department/department.module').then(m => m.DepartmentModule),
+    data: {
+      containerEnabled: true
+    }
+    },
+
+  
+  {
+    path: 'Position',
+    loadChildren: () => import('./pages/position/position.module').then(m => m.PositionModule),
+    data: {
+      containerEnabled: true
+    }
+    },
+
   {
     path: '**',
     component: NotFoundComponent

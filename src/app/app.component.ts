@@ -79,6 +79,20 @@ export class AppComponent {
         label: 'Allowance',
         route: 'Allowance',
         icon: icUser
+      },
+
+      {
+        type: 'link',
+        label: 'Department',
+        route: 'Department',
+        icon: icUser
+      },
+
+      {
+        type: 'link',
+        label: 'Position',
+        route: 'Position',
+        icon: icUser
       }
     ];
   }
