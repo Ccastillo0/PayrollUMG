@@ -20,7 +20,22 @@ export const endpoint ={
     ALLOWANCE_REGISTER: 'Allowance/Register',
     ALLOWANCE_EDIT: 'Allowance/Edit/',
     ALLOWANCE_REMOVE: 'Allowance/Remove/',
+
+    //DEDUCTION
+    LIST_DEDUCTION: 'Deduction',
+    LIST_SELECT_DEDUCTION : 'Deduction/Select',
+    DEDUCTION_BY_ID: 'Deduction/',
+    DEDUCTION_REGISTER: 'Deduction/Register',
+    DEDUCTION_EDIT: 'Deduction/Edit/',
+    DEDUCTION_REMOVE: 'Deduction/Remove/',   
     
+    //PAYROLL
+    LIST_PAYROLL: 'Payroll',
+    LIST_SELECT_PAYROLL: 'Payroll/Select',
+    PAYROLL_BY_ID: 'Payroll/',
+    PAYROLL_REGISTER: 'Payroll/Register',
+    PAYROLL_EDIT: 'Payroll/Edit/',
+    PAYROLL_REMOVE: 'Payroll/Remove/',
 }
 
 export const httpOptions={
