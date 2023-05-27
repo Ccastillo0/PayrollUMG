@@ -46,14 +46,14 @@ const tableColumns: TableColumn<PayrollDetail>[] = [
     {
         label: "payroll Id",
         property: "payrollId",
-        type: "currency",
+        type: "identificador",
         cssClasses: ['font-medium', 'w-10']  
     },
 
     {
         label: "concept Id",
         property: "conceptId",
-        type: "currency",
+        type: "identificador",
         cssClasses: ['font-medium', 'w-10']  
     },
     {
