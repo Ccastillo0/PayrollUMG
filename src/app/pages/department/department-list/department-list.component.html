@@ -1,8 +1,8 @@
 <div class="w-full h-full flex flex-col">
     <div class="px-gutter pt-6 pb-20 bg-primary flex-none">
-        <div class="flex items-center justify-between" vexContainer>
+        <div class="flex items-center justify-between">
             <h2 class="headline text-primary-contrast m-0 flex items-center w-full max-w-xxxl mr-6">
-                <span @fadeInRight class="ml-4 block">Gestión de Usuarios</span>
+                <span @fadeInRight class="ml-4 block">Gestión de Allowance</span>
             </h2>
             <div class="flex items-center justify-end w-full">
                 <vex-search-box [searchOptions]="component.searchOptions" (search)="search($event)">
@@ -11,9 +11,9 @@
             </div>
         </div>
     </div>
-    <div class="mt-14 pt-0 overflow-hidden flex" vexContainer> 
+    <div class="-mt-14 pt-0 overflow-hidden flex"> 
         <mat-drawer-container class="bg-transparent flex-auto flex">
-            <mat-drawer-content class="p-gutter pt-e flex-auto flex items-start">
+            <mat-drawer-content class="p-gutter pt-0 flex-auto flex items-start">
 
                 <vex-list-table-menu 
                     class="hidden sm:block mr-6"
