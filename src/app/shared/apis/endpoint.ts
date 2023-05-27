@@ -19,7 +19,26 @@ export const endpoint ={
     ALLOWANCE_REGISTER: 'Allowance/Register',
     ALLOWANCE_EDIT: 'Allowance/Edit/',
     ALLOWANCE_REMOVE: 'Allowance/Remove/',
+
+     //DEPARTMENT
+     LIST_DEPARTMENT: 'Department',
+     LIST_SELECT_DEPARTMENT : 'Department/Select',
+     DEPARTMENT_BY_ID: 'Department/',
+     DEPARTMENT_REGISTER: 'Department/Register',
+     DEPARTMENT_EDIT: 'Department/Edit/',
+     DEPARTMENT_REMOVE: 'Department/Remove/',
+ 
     
+     //POSITION
+     LIST_POSITION: 'Position',
+     LIST_SELECT_POSITION : 'Position/Select',
+     POSITION_BY_ID: 'Position/',
+     POSITION_REGISTER: 'Position/Register',
+     POSITION_EDIT: 'Position/Edit/',
+     POSITION_REMOVE: 'Position/Remove/',
+
+ 
+
 }
 
 export const httpOptions={
