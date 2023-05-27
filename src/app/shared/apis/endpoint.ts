@@ -37,10 +37,24 @@ export const endpoint ={
      POSITION_EDIT: 'Position/Edit/',
      POSITION_REMOVE: 'Position/Remove/',
 
- 
 
+    //DEDUCTION
+    LIST_DEDUCTION: 'Deduction',
+    LIST_SELECT_DEDUCTION : 'Deduction/Select',
+    DEDUCTION_BY_ID: 'Deduction/',
+    DEDUCTION_REGISTER: 'Deduction/Register',
+    DEDUCTION_EDIT: 'Deduction/Edit/',
+    DEDUCTION_REMOVE: 'Deduction/Remove/',   
+    
+    //PAYROLL
+    LIST_PAYROLL: 'Payroll',
+    LIST_SELECT_PAYROLL: 'Payroll/Select',
+    PAYROLL_BY_ID: 'Payroll/',
+    PAYROLL_REGISTER: 'Payroll/Register',
+    PAYROLL_EDIT: 'Payroll/Edit/',
+    PAYROLL_REMOVE: 'Payroll/Remove/',
 }
-
+//fff
 export const httpOptions={
     headers: new HttpHeaders({
         "Content-Type": "application/json"

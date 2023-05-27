@@ -73,8 +73,7 @@ export class AppComponent {
         label: 'User',
         route: 'User',
         icon: icUser
-      },
-      {
+      },{
         type: 'link',
         label: 'Allowance',
         route: 'Allowance',

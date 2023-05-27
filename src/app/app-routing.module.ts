@@ -23,8 +23,7 @@ const childrenRoutes: VexRoutes = [
     data: {
       containerEnabled: true
     }
-  },
-  {
+  },{
     path: 'Allowance',
     loadChildren: () => import('./pages/allowance/allowance.module').then(m => m.AllowanceModule),
     data: {
@@ -49,6 +48,20 @@ const childrenRoutes: VexRoutes = [
     }
     },
 
+  {
+    path: 'Deduction',
+    loadChildren: () => import('./pages/deduction/deduction.module').then(m => m.DeductionModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  {
+    path: 'Payroll',
+    loadChildren: () => import('./pages/payroll/payroll.module').then(m => m.PayrollModule),
+    data: {
+      containerEnabled: true
+    }
+  },
   {
     path: '**',
     component: NotFoundComponent
