@@ -3,16 +3,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import icClose from '@iconify/icons-ic/twotone-close';
 import { AlertService } from '@shared/services/alert.service';
-import { UserService } from 'src/app/services/user.service';
+import { PositionService } from 'src/app/services/position.service';
 import * as configs from '../../../../static-data/configs';
 
 
 @Component({
-  selector: 'vex-user-manage',
-  templateUrl: './user-manage.component.html',
-  styleUrls: ['./user-manage.component.scss']
+  selector: 'vex-position-manage',
+  templateUrl: './position-manage.component.html',
+  styleUrls: ['./position-manage.component.scss']
 })
-export class UserManageComponent implements OnInit {
+export class PositionManageComponent implements OnInit {
 
   icClose = icClose
   configs = configs
@@ -24,64 +24,63 @@ export class UserManageComponent implements OnInit {
     const formattedDate = currentDate.toISOString(); // Formatear la fecha como una cadena ISO
 
     this.form = this._fb.group({
-      userId: [0, [Validators.required]],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      createdAt: [formattedDate]
+      positionId: [0, [Validators.required]],
+      positionName: ['', [Validators.required]],
+      
     })
+
   }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private _fb: FormBuilder,
     private _alert: AlertService,
-    private _userService: UserService,
-    private _dialogRef: MatDialogRef<UserManageComponent>
+    private _positionService: PositionService,
+    private _dialogRef: MatDialogRef<PositionManageComponent>
   ) {
     this.initForm();
   }
 
   ngOnInit(): void {
-    console.log(this.data)
+
     if (this.data != null) {
-      this.UserById(this.data.data.userId)
+      this.PositionById(this.data.data.positionId)
     }
   }
 
-  UserById(userId: number): void {
-    this._userService.UserById(userId).subscribe(
+  PositionById(positionId: number): void {
+    this._positionService.PositionById(positionId).subscribe(
       (resp) => {
         this.form.reset({
-          userId: resp.userId,
-          username: resp.username,
-          password: resp.password,
-          email: resp.email
+          positionId: resp.positionId,
+          positionName: resp.positionName,
+          
         })
       }
     )
   }
 
-  UserSave(): void {
+  PositionSave(): void {
+    console.log(this.data)
     if (this.form.invalid) {
       console.log("Invalid")
       return Object.values(this.form.controls).forEach((controls) => {
         controls.markAllAsTouched();
       })
     }
-    const userId = this.form.get('userId').value
-    console.log(userId)
+    const positionId = this.form.get('positionId').value
+    console.log(positionId)
 
-    if (userId > 0) {
-      this.UserEdit(userId)
+    if (positionId > 0) {
+      this.PositionEdit(positionId)
     } else {
-      this.UserRegister()
+      this.PositionRegister()
     }
   }
 
 
-  UserRegister(): void {
-    this._userService.UserRegister(this.form.value).subscribe((resp) => {
+  PositionRegister(): void {
+    this._positionService.PositionRegister(this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Successfull', resp.message)
         this._dialogRef.close(true)
@@ -91,8 +90,8 @@ export class UserManageComponent implements OnInit {
     })
   }
 
-  UserEdit(userId: number): void {
-    this._userService.UserEdit(userId, this.form.value).subscribe((resp) => {
+  PositionEdit(positionId: number): void {
+    this._positionService.PositionEdit(positionId, this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Excelente', resp.message)
         this._dialogRef.close(true)
@@ -104,3 +103,7 @@ export class UserManageComponent implements OnInit {
 
   }
 }
+
+
+
+

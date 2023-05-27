@@ -5,34 +5,35 @@ import { CustomTitleService } from '@shared/services/custom-title.service';
 import { fadeInRight400ms } from 'src/@vex/animations/fade-in-right.animation';
 import { scaleIn400ms } from 'src/@vex/animations/scale-in.animation';
 import { stagger40ms } from 'src/@vex/animations/stagger.animation';
-import { UserApi } from 'src/app/response/user/user.response';
-import { UserService } from 'src/app/services/user.service';
-import { UserManageComponent } from '../user-manage/user-manage.component';
-import { componentSettings } from './user-list-config';
+import { DepartmentApi } from 'src/app/response/department/department.response';
+import { DepartmentService } from 'src/app/services/department.service';
+import { DepartmentManageComponent } from '../department-manage/department-manage.component';
+import { componentSettings } from './department-list-config';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'vex-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: 'vex-department-list',
+  templateUrl: './department-list.component.html',
+  styleUrls: ['./department-list.component.scss'],
   animations: [
     stagger40ms,
     scaleIn400ms,
     fadeInRight400ms
   ]
 })
-export class UserListComponent implements OnInit {
+export class DepartmentListComponent implements OnInit {
   component
 
   constructor(
     customTitle: CustomTitleService,
-    public _UserService: UserService,
+    public _DepartmentService: DepartmentService,
     public _dialog: MatDialog
   ) {
-    customTitle.set('User')
+    customTitle.set('Department')
   }
 
   ngOnInit(): void {
+    console.log("DATA: ", componentSettings)
     this.component = componentSettings
   }
 
@@ -65,7 +66,7 @@ export class UserListComponent implements OnInit {
 
   }
   openDialogRegister() {
-    this._dialog.open(UserManageComponent, {
+    this._dialog.open(DepartmentManageComponent, {
       disableClose: true,
       width: '600px'
     }).afterClosed().subscribe(
@@ -81,28 +82,28 @@ export class UserListComponent implements OnInit {
   rowClick(e: any) {
     console.log("RowClick", e)
     let action = e.action
-    let user = e.row
+    let department = e.row
 
     switch (action) {
       case "edit":
-        this.UserEdit(user)
-        console.log('EDIT: ', user)
+        this.DepartmentEdit(department)
+        console.log('EDIT: ', department)
         break
       case "remove":
-        this.UserRemove(user)
-        console.log('REMOVE: ', user)
+        this.DepartmentRemove(department)
+        console.log('REMOVE: ', department)
 
         break
     }
     return false
   }
 
-  UserEdit(row: UserApi) {
+  DepartmentEdit(row: DepartmentApi) {
     console.log('ID: ', row)
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = row
 
-    let dialogRef = this._dialog.open(UserManageComponent, {
+    let dialogRef = this._dialog.open(DepartmentManageComponent, {
       data: dialogConfig,
       disableClose: true,
       width: '400px'
@@ -115,9 +116,9 @@ export class UserListComponent implements OnInit {
       });
   }
 
-  UserRemove(user: any) {
+  DepartmentRemove(department: any) {
     Swal.fire({
-      title: '¿Realmente deseas eliminar el usuario - ' + user.username + ' ?',
+      title: '¿Realmente deseas eliminar el usuario - ' + department.departmentName + ' ?',
       text: "Se borrara de forma permanente",
       icon: "warning",
       showCancelButton: true,
@@ -129,7 +130,7 @@ export class UserListComponent implements OnInit {
       width: 430
     }).then((result) => {
       if (result.isConfirmed) {
-        this._UserService.UserRemove(user.userId).subscribe(() => this.formatGetInputs(),
+        this._DepartmentService.DepartmentRemove(department.departmentId).subscribe(() => this.formatGetInputs(),
           (error) => {
             // Manejar el error de solicitud aquí
           });

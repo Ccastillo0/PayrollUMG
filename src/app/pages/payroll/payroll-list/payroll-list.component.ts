@@ -5,31 +5,31 @@ import { CustomTitleService } from '@shared/services/custom-title.service';
 import { fadeInRight400ms } from 'src/@vex/animations/fade-in-right.animation';
 import { scaleIn400ms } from 'src/@vex/animations/scale-in.animation';
 import { stagger40ms } from 'src/@vex/animations/stagger.animation';
-import { UserApi } from 'src/app/response/user/user.response';
-import { UserService } from 'src/app/services/user.service';
-import { UserManageComponent } from '../user-manage/user-manage.component';
-import { componentSettings } from './user-list-config';
+import { PayrollApi } from 'src/app/response/payroll/payroll.response';
+import { PayrollService } from 'src/app/services/payroll.service';
+import { PayrollManageComponent } from '../payroll-manage/payroll-manage.component';
+import { componentSettings } from './payroll-list-config';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'vex-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: 'vex-payroll-list',
+  templateUrl: './payroll-list.component.html',
+  styleUrls: ['./payroll-list.component.scss'],
   animations: [
     stagger40ms,
     scaleIn400ms,
     fadeInRight400ms
   ]
 })
-export class UserListComponent implements OnInit {
+export class PayrollListComponent implements OnInit {
   component
 
   constructor(
     customTitle: CustomTitleService,
-    public _UserService: UserService,
+    public _PayrollService: PayrollService,
     public _dialog: MatDialog
   ) {
-    customTitle.set('User')
+    customTitle.set('Payroll')
   }
 
   ngOnInit(): void {
@@ -65,12 +65,12 @@ export class UserListComponent implements OnInit {
 
   }
   openDialogRegister() {
-    this._dialog.open(UserManageComponent, {
+    this._dialog.open(PayrollManageComponent, {
       disableClose: true,
       width: '600px'
-    }).afterClosed().subscribe(
+    }).afterClosed().subscribe( 
       (res) => {
-        if (res) {
+        if(res){
           this.formatGetInputs()
         }
       }
@@ -79,45 +79,45 @@ export class UserListComponent implements OnInit {
   }
 
   rowClick(e: any) {
-    console.log("RowClick", e)
+    console.log("RowClick",e)
     let action = e.action
-    let user = e.row
-
+    let payroll = e.row
+    
     switch (action) {
       case "edit":
-        this.UserEdit(user)
-        console.log('EDIT: ', user)
+        this.PayrollEdit(payroll)
+        console.log('EDIT: ', payroll)
         break
       case "remove":
-        this.UserRemove(user)
-        console.log('REMOVE: ', user)
+        this.PayrollRemove(payroll)
+        console.log('REMOVE: ', payroll)
 
         break
     }
     return false
   }
 
-  UserEdit(row: UserApi) {
+  PayrollEdit(row: PayrollApi) {
     console.log('ID: ', row)
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = row
 
-    let dialogRef = this._dialog.open(UserManageComponent, {
+    let dialogRef = this._dialog.open(PayrollManageComponent, {
       data: dialogConfig,
       disableClose: true,
       width: '400px'
     })
     dialogRef
-      .afterClosed().subscribe((res) => {
-        if (res) {
-          this.formatGetInputs()
-        }
-      });
+    .afterClosed().subscribe((res) => {
+      if(res){
+        this.formatGetInputs()
+      }
+    });
   }
 
-  UserRemove(user: any) {
+  PayrollRemove(payroll: any) {
     Swal.fire({
-      title: '¿Realmente deseas eliminar el usuario - ' + user.username + ' ?',
+      title: '¿Realmente deseas eliminar el usuario - ' + payroll.payrollId + ' ?',
       text: "Se borrara de forma permanente",
       icon: "warning",
       showCancelButton: true,
@@ -129,12 +129,10 @@ export class UserListComponent implements OnInit {
       width: 430
     }).then((result) => {
       if (result.isConfirmed) {
-        this._UserService.UserRemove(user.userId).subscribe(() => this.formatGetInputs(),
+        this._PayrollService.PayrollRemove(payroll.payrollId).subscribe(() => this.formatGetInputs(),
           (error) => {
             // Manejar el error de solicitud aquí
           });
-      }
-    })
-  }
-
-}
+      }
+    })
+  }}

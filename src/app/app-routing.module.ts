@@ -25,15 +25,40 @@ const childrenRoutes: VexRoutes = [
     }
   },
   {
-    path: 'Employee',
-    loadChildren: () => import('./pages/employee/employee.module').then(m => m.EmployeeModule),
+    path: 'Allowance',
+    loadChildren: () => import('./pages/allowance/allowance.module').then(m => m.AllowanceModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  
+  {
+    path: 'Department',
+    loadChildren: () => import('./pages/department/department.module').then(m => m.DepartmentModule),
+    data: {
+      containerEnabled: true
+    }
+    },
+
+  
+  {
+    path: 'Position',
+    loadChildren: () => import('./pages/position/position.module').then(m => m.PositionModule),
+    data: {
+      containerEnabled: true
+    }
+    },
+
+  {
+    path: 'Deduction',
+    loadChildren: () => import('./pages/deduction/deduction.module').then(m => m.DeductionModule),
     data: {
       containerEnabled: true
     }
   },
   {
-    path: 'PayrollDetail',
-    loadChildren: () => import('./pages/payrolldetail/payrolldetail.module').then(m => m.PayrollDetailModule),
+    path: 'Payroll',
+    loadChildren: () => import('./pages/payroll/payroll.module').then(m => m.PayrollModule),
     data: {
       containerEnabled: true
     }

@@ -3,16 +3,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import icClose from '@iconify/icons-ic/twotone-close';
 import { AlertService } from '@shared/services/alert.service';
-import { UserService } from 'src/app/services/user.service';
+import { DepartmentService } from 'src/app/services/department.service';
 import * as configs from '../../../../static-data/configs';
 
 
 @Component({
-  selector: 'vex-user-manage',
-  templateUrl: './user-manage.component.html',
-  styleUrls: ['./user-manage.component.scss']
+  selector: 'vex-department-manage',
+  templateUrl: './department-manage.component.html',
+  styleUrls: ['./department-manage.component.scss']
 })
-export class UserManageComponent implements OnInit {
+export class DepartmentManageComponent implements OnInit {
 
   icClose = icClose
   configs = configs
@@ -24,64 +24,61 @@ export class UserManageComponent implements OnInit {
     const formattedDate = currentDate.toISOString(); // Formatear la fecha como una cadena ISO
 
     this.form = this._fb.group({
-      userId: [0, [Validators.required]],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      createdAt: [formattedDate]
+      departmentId: [0, [Validators.required]],
+      departmentName: ['', [Validators.required]],
     })
+
   }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private _fb: FormBuilder,
     private _alert: AlertService,
-    private _userService: UserService,
-    private _dialogRef: MatDialogRef<UserManageComponent>
+    private _departmentService: DepartmentService,
+    private _dialogRef: MatDialogRef<DepartmentManageComponent>
   ) {
     this.initForm();
   }
 
   ngOnInit(): void {
-    console.log(this.data)
+
     if (this.data != null) {
-      this.UserById(this.data.data.userId)
+      this.DepartmentById(this.data.data.departmentId)
     }
   }
 
-  UserById(userId: number): void {
-    this._userService.UserById(userId).subscribe(
+  DepartmentById(departmentId: number): void {
+    this._departmentService.DepartmentById(departmentId).subscribe(
       (resp) => {
         this.form.reset({
-          userId: resp.userId,
-          username: resp.username,
-          password: resp.password,
-          email: resp.email
+          departmentId: resp.departmentId,
+          departmentName: resp.departmentName,
         })
       }
     )
   }
 
-  UserSave(): void {
+  DepartmentSave(): void {
+    console.log(this.data)
     if (this.form.invalid) {
       console.log("Invalid")
       return Object.values(this.form.controls).forEach((controls) => {
         controls.markAllAsTouched();
       })
     }
-    const userId = this.form.get('userId').value
-    console.log(userId)
+    const departmentId = this.form.get('departmentId').value
+    console.log(departmentId)
 
-    if (userId > 0) {
-      this.UserEdit(userId)
+    if (departmentId > 0) {
+      this.DepartmentEdit(departmentId)
     } else {
-      this.UserRegister()
+      this.DepartmentRegister()
     }
   }
 
 
-  UserRegister(): void {
-    this._userService.UserRegister(this.form.value).subscribe((resp) => {
+  DepartmentRegister(): void {
+    this._departmentService.DepartmentRegister(this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Successfull', resp.message)
         this._dialogRef.close(true)
@@ -91,8 +88,8 @@ export class UserManageComponent implements OnInit {
     })
   }
 
-  UserEdit(userId: number): void {
-    this._userService.UserEdit(userId, this.form.value).subscribe((resp) => {
+  DepartmentEdit(departmentId: number): void {
+    this._departmentService.DepartmentEdit(departmentId, this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Excelente', resp.message)
         this._dialogRef.close(true)

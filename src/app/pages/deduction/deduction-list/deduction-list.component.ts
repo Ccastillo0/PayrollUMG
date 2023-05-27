@@ -5,31 +5,31 @@ import { CustomTitleService } from '@shared/services/custom-title.service';
 import { fadeInRight400ms } from 'src/@vex/animations/fade-in-right.animation';
 import { scaleIn400ms } from 'src/@vex/animations/scale-in.animation';
 import { stagger40ms } from 'src/@vex/animations/stagger.animation';
-import { UserApi } from 'src/app/response/user/user.response';
-import { UserService } from 'src/app/services/user.service';
-import { UserManageComponent } from '../user-manage/user-manage.component';
-import { componentSettings } from './user-list-config';
+import { DeductionApi } from 'src/app/response/deduction/deduction.response';
+import { DeductionService } from 'src/app/services/deduction.service';
+import { DeductionManageComponent } from '../deduction-manage/deduction-manage.component';
+import { componentSettings } from './deduction-list-config';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'vex-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: 'vex-deduction-list',
+  templateUrl: './deduction-list.component.html',
+  styleUrls: ['./deduction-list.component.scss'],
   animations: [
     stagger40ms,
     scaleIn400ms,
     fadeInRight400ms
   ]
 })
-export class UserListComponent implements OnInit {
+export class DeductionListComponent implements OnInit {
   component
 
   constructor(
     customTitle: CustomTitleService,
-    public _UserService: UserService,
+    public _DeductionService: DeductionService,
     public _dialog: MatDialog
   ) {
-    customTitle.set('User')
+    customTitle.set('Deduction')
   }
 
   ngOnInit(): void {
@@ -65,12 +65,12 @@ export class UserListComponent implements OnInit {
 
   }
   openDialogRegister() {
-    this._dialog.open(UserManageComponent, {
+    this._dialog.open(DeductionManageComponent, {
       disableClose: true,
       width: '600px'
-    }).afterClosed().subscribe(
+    }).afterClosed().subscribe( 
       (res) => {
-        if (res) {
+        if(res){
           this.formatGetInputs()
         }
       }
@@ -79,62 +79,62 @@ export class UserListComponent implements OnInit {
   }
 
   rowClick(e: any) {
-    console.log("RowClick", e)
+    console.log("RowClick",e)
     let action = e.action
-    let user = e.row
-
+    let deduction = e.row
+    
     switch (action) {
       case "edit":
-        this.UserEdit(user)
-        console.log('EDIT: ', user)
+        this.DeductionEdit(deduction)
+        console.log('EDIT: ', deduction)
         break
       case "remove":
-        this.UserRemove(user)
-        console.log('REMOVE: ', user)
+        this.DeductionRemove(deduction)
+        console.log('REMOVE: ', deduction)
 
         break
     }
     return false
   }
 
-  UserEdit(row: UserApi) {
+  DeductionEdit(row: DeductionApi) {
     console.log('ID: ', row)
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = row
 
-    let dialogRef = this._dialog.open(UserManageComponent, {
+    let dialogRef = this._dialog.open(DeductionManageComponent, {
       data: dialogConfig,
       disableClose: true,
       width: '400px'
     })
     dialogRef
-      .afterClosed().subscribe((res) => {
-        if (res) {
-          this.formatGetInputs()
-        }
-      });
-  }
-
-  UserRemove(user: any) {
-    Swal.fire({
-      title: '¿Realmente deseas eliminar el usuario - ' + user.username + ' ?',
-      text: "Se borrara de forma permanente",
-      icon: "warning",
-      showCancelButton: true,
-      focusCancel: true,
-      confirmButtonColor: 'rgb(210, 155, 253)',
-      cancelButtonColor: 'rgb(79, 109, 253',
-      confirmButtonText: 'Si, eliminar',
-      cancelButtonText: 'Cancelar',
-      width: 430
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this._UserService.UserRemove(user.userId).subscribe(() => this.formatGetInputs(),
-          (error) => {
-            // Manejar el error de solicitud aquí
-          });
+    .afterClosed().subscribe((res) => {
+      if(res){
+        this.formatGetInputs()
       }
-    })
+    });
   }
 
-}
+  DeductionRemove(deduction: any) {
+      Swal.fire({
+        title: '¿Realmente deseas eliminar el usuario - ' + deduction.description + ' ?',
+        text: "Se borrara de forma permanente",
+        icon: "warning",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonColor: 'rgb(210, 155, 253)',
+        cancelButtonColor: 'rgb(79, 109, 253',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+        width: 430
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this._DeductionService.DeductionRemove(deduction.deductionId).subscribe(() => this.formatGetInputs(),
+            (error) => {
+              // Manejar el error de solicitud aquí
+            });
+        }
+      })
+    }
+  
+  }

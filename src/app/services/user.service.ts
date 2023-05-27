@@ -86,15 +86,16 @@ export class UserService {
   }
 
   UserRemove(UserId: number): Observable<void> {
-    const requestUrl = env.api + endpoint.USER_REMOVE + UserId
-    return this._http.put(requestUrl,'').pipe(
+    const requestUrl = env.api + endpoint.USER_REMOVE + UserId;
+    return this._http.delete(requestUrl).pipe(
       map((resp: ApiResponse) => {
-        if(resp.isSuccess){
-          this._alert.success('User Delete Successfull', resp.message)
+        if (resp.isSuccess) {
+          this._alert.success('User Delete Successfull', resp.message);
         }
       })
-    )
+    );
   }
+  
 
 }
 
