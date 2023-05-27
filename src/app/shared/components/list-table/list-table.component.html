@@ -28,6 +28,11 @@
                         <mat-checkbox [checked]="row[column.property]" (change)="changeSelection(row)"></mat-checkbox>
                     </td>
                 </ng-container>
+
+                <ng-container *ngIf="column.type === 'identificador'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header scope="col"> {{ column.label }}</th>
+                    <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>{{ row[column.property] === null ? "-" : row[column.property] }}</td>
+                </ng-container>
                 
                 <ng-container *ngIf="column.type === 'identificador'" [matColumnDef]="column.property">
                     <th *matHeaderCellDef mat-header-cell mat-sort-header scope="col"> {{ column.label }}</th>

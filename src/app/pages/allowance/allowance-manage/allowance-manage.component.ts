@@ -3,16 +3,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import icClose from '@iconify/icons-ic/twotone-close';
 import { AlertService } from '@shared/services/alert.service';
-import { UserService } from 'src/app/services/user.service';
+import { AllowanceService } from 'src/app/services/allowance.service';
 import * as configs from '../../../../static-data/configs';
 
 
 @Component({
-  selector: 'vex-user-manage',
-  templateUrl: './user-manage.component.html',
-  styleUrls: ['./user-manage.component.scss']
+  selector: 'vex-allowance-manage',
+  templateUrl: './allowance-manage.component.html',
+  styleUrls: ['./allowance-manage.component.scss']
 })
-export class UserManageComponent implements OnInit {
+export class AllowanceManageComponent implements OnInit {
 
   icClose = icClose
   configs = configs
@@ -24,64 +24,63 @@ export class UserManageComponent implements OnInit {
     const formattedDate = currentDate.toISOString(); // Formatear la fecha como una cadena ISO
 
     this.form = this._fb.group({
-      userId: [0, [Validators.required]],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      createdAt: [formattedDate]
+      allowanceId: [0, [Validators.required]],
+      description: ['', [Validators.required]],
+      amount: ['', [Validators.required]]
     })
+
   }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private _fb: FormBuilder,
     private _alert: AlertService,
-    private _userService: UserService,
-    private _dialogRef: MatDialogRef<UserManageComponent>
+    private _allowanceService: AllowanceService,
+    private _dialogRef: MatDialogRef<AllowanceManageComponent>
   ) {
     this.initForm();
   }
 
   ngOnInit(): void {
-    console.log(this.data)
+
     if (this.data != null) {
-      this.UserById(this.data.data.userId)
+      this.AllowanceById(this.data.data.allowanceId)
     }
   }
 
-  UserById(userId: number): void {
-    this._userService.UserById(userId).subscribe(
+  AllowanceById(allowanceId: number): void {
+    this._allowanceService.AllowanceById(allowanceId).subscribe(
       (resp) => {
         this.form.reset({
-          userId: resp.userId,
-          username: resp.username,
-          password: resp.password,
-          email: resp.email
+          allowanceId: resp.allowanceId,
+          description: resp.description,
+          amount: resp.amount
         })
       }
     )
   }
 
-  UserSave(): void {
+  AllowanceSave(): void {
+    console.log(this.data)
     if (this.form.invalid) {
       console.log("Invalid")
       return Object.values(this.form.controls).forEach((controls) => {
         controls.markAllAsTouched();
       })
     }
-    const userId = this.form.get('userId').value
-    console.log(userId)
+    const allowanceId = this.form.get('allowanceId').value
+    console.log(allowanceId)
 
-    if (userId > 0) {
-      this.UserEdit(userId)
+    if (allowanceId > 0) {
+      this.AllowanceEdit(allowanceId)
     } else {
-      this.UserRegister()
+      this.AllowanceRegister()
     }
   }
 
 
-  UserRegister(): void {
-    this._userService.UserRegister(this.form.value).subscribe((resp) => {
+  AllowanceRegister(): void {
+    this._allowanceService.AllowanceRegister(this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Successfull', resp.message)
         this._dialogRef.close(true)
@@ -91,8 +90,8 @@ export class UserManageComponent implements OnInit {
     })
   }
 
-  UserEdit(userId: number): void {
-    this._userService.UserEdit(userId, this.form.value).subscribe((resp) => {
+  AllowanceEdit(allowanceId: number): void {
+    this._allowanceService.AllowanceEdit(allowanceId, this.form.value).subscribe((resp) => {
       if (resp.isSuccess) {
         this._alert.success('Excelente', resp.message)
         this._dialogRef.close(true)

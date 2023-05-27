@@ -5,34 +5,35 @@ import { CustomTitleService } from '@shared/services/custom-title.service';
 import { fadeInRight400ms } from 'src/@vex/animations/fade-in-right.animation';
 import { scaleIn400ms } from 'src/@vex/animations/scale-in.animation';
 import { stagger40ms } from 'src/@vex/animations/stagger.animation';
-import { UserApi } from 'src/app/response/user/user.response';
-import { UserService } from 'src/app/services/user.service';
-import { UserManageComponent } from '../user-manage/user-manage.component';
-import { componentSettings } from './user-list-config';
+import { AllowanceApi } from 'src/app/response/allowance/allowance.response';
+import { AllowanceService } from 'src/app/services/allowance.service';
+import { AllowanceManageComponent } from '../allowance-manage/allowance-manage.component';
+import { componentSettings } from './allowance-list-config';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'vex-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: 'vex-allowance-list',
+  templateUrl: './allowance-list.component.html',
+  styleUrls: ['./allowance-list.component.scss'],
   animations: [
     stagger40ms,
     scaleIn400ms,
     fadeInRight400ms
   ]
 })
-export class UserListComponent implements OnInit {
+export class AllowanceListComponent implements OnInit {
   component
 
   constructor(
     customTitle: CustomTitleService,
-    public _UserService: UserService,
+    public _AllowanceService: AllowanceService,
     public _dialog: MatDialog
   ) {
-    customTitle.set('User')
+    customTitle.set('Allowance')
   }
 
   ngOnInit(): void {
+    console.log("DATA: ", componentSettings)
     this.component = componentSettings
   }
 
@@ -65,7 +66,7 @@ export class UserListComponent implements OnInit {
 
   }
   openDialogRegister() {
-    this._dialog.open(UserManageComponent, {
+    this._dialog.open(AllowanceManageComponent, {
       disableClose: true,
       width: '600px'
     }).afterClosed().subscribe(
@@ -81,28 +82,28 @@ export class UserListComponent implements OnInit {
   rowClick(e: any) {
     console.log("RowClick", e)
     let action = e.action
-    let user = e.row
+    let allowance = e.row
 
     switch (action) {
       case "edit":
-        this.UserEdit(user)
-        console.log('EDIT: ', user)
+        this.AllowanceEdit(allowance)
+        console.log('EDIT: ', allowance)
         break
       case "remove":
-        this.UserRemove(user)
-        console.log('REMOVE: ', user)
+        this.AllowanceRemove(allowance)
+        console.log('REMOVE: ', allowance)
 
         break
     }
     return false
   }
 
-  UserEdit(row: UserApi) {
+  AllowanceEdit(row: AllowanceApi) {
     console.log('ID: ', row)
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = row
 
-    let dialogRef = this._dialog.open(UserManageComponent, {
+    let dialogRef = this._dialog.open(AllowanceManageComponent, {
       data: dialogConfig,
       disableClose: true,
       width: '400px'
@@ -115,9 +116,9 @@ export class UserListComponent implements OnInit {
       });
   }
 
-  UserRemove(user: any) {
+  AllowanceRemove(allowance: any) {
     Swal.fire({
-      title: '¿Realmente deseas eliminar el usuario - ' + user.username + ' ?',
+      title: '¿Realmente deseas eliminar el usuario - ' + allowance.description + ' ?',
       text: "Se borrara de forma permanente",
       icon: "warning",
       showCancelButton: true,
@@ -129,7 +130,7 @@ export class UserListComponent implements OnInit {
       width: 430
     }).then((result) => {
       if (result.isConfirmed) {
-        this._UserService.UserRemove(user.userId).subscribe(() => this.formatGetInputs(),
+        this._AllowanceService.AllowanceRemove(allowance.allowanceId).subscribe(() => this.formatGetInputs(),
           (error) => {
             // Manejar el error de solicitud aquí
           });
