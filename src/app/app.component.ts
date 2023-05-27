@@ -82,10 +82,40 @@ export class AppComponent {
       },
       {
         type: 'link',
+        label: 'Allowance',
+        route: 'Allowance',
+        icon: icUser
+      },
+      {
+        type: 'link',
+        label: 'Deduction',
+        route: 'Deduction',
+        icon: icUser
+      },
+      {
+        type: 'link',
+        label: 'Department',
+        route: 'Department',
+        icon: icUser
+      },
+      {
+        type: 'link',
+        label: 'Position',
+        route: 'Position',
+        icon: icUser
+      },
+      {
+        type: 'link',
+        label: 'Payroll',
+        route: 'Payroll',
+        icon: icUser
+      },
+      {
+        type: 'link',
         label: 'PayrollDetail',
         route: 'PayrollDetail',
         icon: icUser
-      }
+      },
     ];
   }
 }
