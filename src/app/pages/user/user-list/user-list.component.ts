@@ -43,6 +43,7 @@ export class UserListComponent implements OnInit {
     this.formatGetInputs()
   }
   search(data: any) {
+    debugger
     this.component.filters.numFilter = data.searchValue
     this.component.filters.textFilter = data.searchString
     this.formatGetInputs()

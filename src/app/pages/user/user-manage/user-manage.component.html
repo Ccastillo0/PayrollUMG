@@ -15,6 +15,9 @@
                 <mat-error *ngIf="form.get('username').hasError('required')">
                   UserName Requerido
                 </mat-error>
+                <mat-error *ngIf="form.get('username').hasError('pattern')">
+                    Solo se pueden ingresar letras
+                </mat-error>
             </mat-form-field>
         </div>
         
@@ -25,6 +28,9 @@
                 <mat-error *ngIf="form.get('password').hasError('required')">
                    Password Requerido
                 </mat-error>
+                <mat-error *ngIf="form.get('password').hasError('pattern')">
+                    Su contraseña debe contener una letra Minuscula, Mayuscula, un Numero y un Caracter especial
+                </mat-error>
             </mat-form-field>
         </div>
 
@@ -34,6 +40,9 @@
                 <input matInput formControlName="email">
                 <mat-error *ngIf="form.get('email').hasError('required')">
                     Email Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('email').hasError('email')">
+                    Ingrese un correo electrónico válido
                 </mat-error>
             </mat-form-field>
         </div>

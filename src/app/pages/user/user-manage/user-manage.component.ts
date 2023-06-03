@@ -14,23 +14,25 @@ import * as configs from '../../../../static-data/configs';
 })
 export class UserManageComponent implements OnInit {
 
+  
   icClose = icClose
   configs = configs
 
   form: FormGroup
 
   initForm(): void {
-    const currentDate = new Date(); // Obtener la fecha actual
-    const formattedDate = currentDate.toISOString(); // Formatear la fecha como una cadena ISO
+      const currentDate = new Date(); // Obtener la fecha actual
+      const formattedDate = currentDate.toISOString(); // Formatear la fecha como una cadena ISO
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{}[\]|\:;"'<>,.?/]).{8,}$/;
 
-    this.form = this._fb.group({
-      userId: [0, [Validators.required]],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      createdAt: [formattedDate]
-    })
-  }
+      this.form = this._fb.group({
+        userId: [0, [Validators.required]],
+        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
+        email: ['', [Validators.required,Validators.email]],
+        createdAt: [formattedDate]
+      })
+    }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,

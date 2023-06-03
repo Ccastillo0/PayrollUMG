@@ -7,6 +7,7 @@ import { AllowanceService } from 'src/app/services/allowance.service';
 import * as configs from '../../../../static-data/configs';
 
 
+
 @Component({
   selector: 'vex-allowance-manage',
   templateUrl: './allowance-manage.component.html',
@@ -25,7 +26,7 @@ export class AllowanceManageComponent implements OnInit {
 
     this.form = this._fb.group({
       allowanceId: [0, [Validators.required]],
-      description: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       amount: ['', [Validators.required]]
     })
 
@@ -102,4 +103,7 @@ export class AllowanceManageComponent implements OnInit {
     })
 
   }
+
+  
+
 }

@@ -16,6 +16,9 @@
                 <mat-error *ngIf="form.get('departmentName').hasError('required')">
                   DepartmentName Requerido
                 </mat-error>
+                <mat-error *ngIf="form.get('departmentName').hasError('pattern')">
+                    Solo se pueden ingresar letras
+                </mat-error>
             </mat-form-field>
         </div>
 

@@ -25,7 +25,7 @@ export class PositionManageComponent implements OnInit {
 
     this.form = this._fb.group({
       positionId: [0, [Validators.required]],
-      positionName: ['', [Validators.required]],
+      positionName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       
     })
 

@@ -5,8 +5,9 @@
                 <span @fadeInRight class="ml-4 block">Gestión de Usuarios</span>
             </h2>
             <div class="flex items-center justify-end w-full">
-                <vex-search-box [searchOptions]="component.searchOptions" (search)="search($event)">
-
+                <vex-search-box
+                [searchOptions]="component.searchOptions "
+                 (search)="search($event)">
                 </vex-search-box>
             </div>
         </div>

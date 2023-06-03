@@ -30,6 +30,7 @@ export class UserService {
 
     const requestUrl = env.api + endpoint.LIST_USER
     console.log(requestUrl)
+    debugger
     const params: ListUserRequest = new ListUserRequest(
       page + 1,
       order,

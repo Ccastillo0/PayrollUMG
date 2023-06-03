@@ -25,10 +25,10 @@ export class PayrolldetailManageComponent implements OnInit {
 
     this.form = this._fb.group({
       detailId: [0, [Validators.required]],
-      payrollId: ['', [Validators.required]],
-      conceptId: ['', [Validators.required]],
-      conceptType: ['', [Validators.required]],
-      amount: ['', [Validators.required]]
+      payrollId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      conceptId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      conceptType: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
 
     })
   }

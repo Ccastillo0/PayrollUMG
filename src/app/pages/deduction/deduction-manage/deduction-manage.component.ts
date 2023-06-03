@@ -25,10 +25,11 @@ export class DeductionManageComponent implements OnInit {
 
     this.form = this._fb.group({
       deductionId: [0, [Validators.required]],
-      description: ['', [Validators.required]],
-      percentage: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      percentage: ['', [Validators.required, Validators.pattern(/^\d{1,2}(\.\d{1,2})?$/)]],
     })
   }
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,

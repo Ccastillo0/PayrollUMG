@@ -16,6 +16,9 @@
                 <mat-error *ngIf="form.get('payrollId').hasError('required')">
                     payrollId Requerido
                 </mat-error>
+                <mat-error *ngIf="form.get('payrollId').hasError('pattern')">
+                    Solo se pueden ingresar numeros
+                </mat-error>
             </mat-form-field>
         </div>
 
@@ -25,6 +28,9 @@
                 <input matInput formControlName="conceptId">
                 <mat-error *ngIf="form.get('conceptId').hasError('required')">
                     conceptId Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('conceptId').hasError('pattern')">
+                    Solo se pueden ingresar numeros
                 </mat-error>
             </mat-form-field>
         </div>
@@ -36,6 +42,9 @@
                 <mat-error *ngIf="form.get('conceptType').hasError('required')">
                     conceptType Requerido
                 </mat-error>
+                <mat-error *ngIf="form.get('conceptType').hasError('pattern')">
+                    Solo se pueden ingresar letras
+                </mat-error>
             </mat-form-field>
         </div>
 
@@ -46,6 +55,9 @@
                 <input matInput formControlName="amount">
                 <mat-error *ngIf="form.get('amount').hasError('required')">
                     amount Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('amount').hasError('pattern')">
+                    Solo se pueden ingresar numeros
                 </mat-error>
             </mat-form-field>
         </div>

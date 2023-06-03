@@ -25,7 +25,7 @@ export class DepartmentManageComponent implements OnInit {
 
     this.form = this._fb.group({
       departmentId: [0, [Validators.required]],
-      departmentName: ['', [Validators.required]],
+      departmentName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
     })
 
   }
