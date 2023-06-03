@@ -2,7 +2,7 @@
     <div class="px-gutter pt-6 pb-20 bg-primary flex-none">
         <div class="flex items-center justify-between">
             <h2 class="headline text-primary-contrast m-0 flex items-center w-full max-w-xxxl mr-6">
-                <span @fadeInRight class="ml-4 block">Gestión de Allowance</span>
+                <span @fadeInRight class="ml-4 block">Gestión de Detalle de Nomina</span>
             </h2>
             <div class="flex items-center justify-end w-full">
                 <vex-search-box [searchOptions]="component.searchOptions" (search)="search($event)">
@@ -24,7 +24,7 @@
                     (filterChage)="setData($event)"
                     [items]="component.menuItems">
                 </vex-list-table-menu>
-
+ 
                 <div class="card h-full overflow-hidden flex-auto">
                     <vex-list-table 
                         (rowClick)="rowClick($event)" 
@@ -35,6 +35,7 @@
                         [getInputs]="component.getInputs"
                         [buttonLabel]="component.buttonLabel"
                     ></vex-list-table>
+
                 </div>
             </mat-drawer-content>
         </mat-drawer-container>

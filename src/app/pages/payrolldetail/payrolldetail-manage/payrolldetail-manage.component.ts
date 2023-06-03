@@ -67,6 +67,7 @@ export class PayrolldetailManageComponent implements OnInit {
     )
   }
 
+
   PayrolldetailSave(): void {
     if (this.form.invalid) {
       console.log("Invalid")
@@ -108,4 +109,9 @@ export class PayrolldetailManageComponent implements OnInit {
     })
 
   }
+  //agregadoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+
+  //agregadoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+  
 }
