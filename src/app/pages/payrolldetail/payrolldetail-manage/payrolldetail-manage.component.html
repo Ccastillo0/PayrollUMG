@@ -1,3 +1,5 @@
+
+
 <form (ngSubmit)="PayrolldetailSave()" [formGroup]="form">
     <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
         <h2 class="headline m-0 text-xl text-accent" fxFlex="auto">
@@ -57,5 +59,6 @@
         <button color="purple" class="bg-accent text-accent-contrast" mat-button type="submit" [disabled]="!form.valid">
             GUARDAR
         </button>
+
     </mat-dialog-actions>
 </form>

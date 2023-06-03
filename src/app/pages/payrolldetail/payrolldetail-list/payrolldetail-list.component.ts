@@ -77,6 +77,7 @@ export class PayrollDetailListComponent implements OnInit {
     )
 
   }
+  
 
   rowClick(e: any) {
     console.log("RowClick",e)

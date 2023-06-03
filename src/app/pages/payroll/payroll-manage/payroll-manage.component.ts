@@ -5,6 +5,7 @@ import icClose from '@iconify/icons-ic/twotone-close';
 import { AlertService } from '@shared/services/alert.service';
 import { PayrollService } from 'src/app/services/payroll.service';
 import * as configs from '../../../../static-data/configs';
+import { ListAllowanceRequest } from 'src/app/requests/allowance/list-allowance.request';
 
 
 @Component({
