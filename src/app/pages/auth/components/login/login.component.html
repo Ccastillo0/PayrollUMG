@@ -1,32 +1,52 @@
 <div class="w-full h-full login-fondo">
     <div class="login">
-        <div class="avatar">
-            <img src="assets/img/demo/landscape.jpg">
-        </div>
-        <h2>Payroll System</h2>
-        <h3>LOGIN</h3>
-        <form [formGroup]="form" class="login-form" (ngSubmit)="login()">
-            <mat-form-field appearance="outline" class="textbox">
-                <mat-label>User</mat-label>
-                <input matInput formControlName="username">
-                <mat-error *ngIf="form.get('username').hasError('required')">
-                    Requerid Username.
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="textbox">
-                <mat-label>Password</mat-label>
-                <input [type]="inputType" matInput formControlName="password"> <mat-error *ngIf="form.get('password').hasError('required')">
-                 Requerid Password.
-                </mat-error>
-                <button  (click)="toggleVisibility()" mat-icon-button matSuffix  matTooltip="{{ !visible? 'View password' :
-                'Close View password' }}" type="button">
-                <mat-icon *ngIf="visible" [icIcon]="icVisibility"></mat-icon>
-                <mat-icon *ngIf="!visible" [icIcon]="icVisibilityOff"></mat-icon>
-                </button>
-            </mat-form-field> <button type="submit" color="primary" mat-raised-button>
-                Iniciar Sesión
-            </button>
-        </form>
+      <div class="avatar">
+        <img src="assets/img/demo/landscape.jpg">
+      </div>
+      <h2>Payroll System</h2>
+      <h3>LOGIN</h3>
+      <form [formGroup]="form" class="login-form" (ngSubmit)="login()">
+        <mat-form-field appearance="outline" class="textbox">
+          <mat-label>User</mat-label>
+          <input matInput formControlName="username">
+          <mat-error *ngIf="form.get('username').hasError('required')">
+            Requerid Username.
+          </mat-error>
+          <mat-error *ngIf="form.get('username').hasError('pattern')">
+            Solo se pueden ingresar letras
+        </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="textbox">
+          <mat-label>Password</mat-label>
+          <input [type]="inputType" matInput formControlName="password">
+          <mat-error *ngIf="form.get('password').hasError('required')">
+            Requerid Password.
+          </mat-error>
+          <mat-error *ngIf="form.get('password').hasError('pattern')">
+            Su contraseña debe contener una letra Minuscula, Mayuscula, un Numero y un Caracter especial
+        </mat-error>
+          <button
+            (click)="toggleVisibility()"
+            mat-icon-button
+            matSuffix
+            matTooltip="{{ !visible ? 'View password' : 'Close View password' }}"
+            type="button"
+          >
+            <mat-icon *ngIf="visible" [icIcon]="icVisibility"></mat-icon>
+            <mat-icon *ngIf="!visible" [icIcon]="icVisibilityOff"></mat-icon>
+          </button>
+        </mat-form-field>
+  
+        <button type="submit" color="primary" mat-raised-button>
+          Iniciar Sesión
+        </button>
+  
+        <button type="button" class="forgot-password-button" (click)="forgotPassword()">
+          Olvidé mi contraseña
+        </button>
+  
+        <p *ngIf="forgotPasswordClicked" class="forgot-password-message">Para recuperar tu contraseña, por favor contacta al soporte de Nómina. Puedes enviar un correo electrónico a <a href="mailto:nominaumg@gmail.com" style="text-decoration: underline;">nominaumg@gmail.com</a>.</p>
+      </form>
     </div>
-</div>
+  </div>

@@ -11,18 +11,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup
+  form: FormGroup;
   inputType = "password";
   visible = false;
+  forgotPasswordClicked = false;
+  forgotPasswordMessage = '';
 
   icVisibility = IconsService.prototype.getIcon("icVisibility");
   icVisibilityOff = IconsService.prototype.getIcon("icVisibilityOff");
 
   initForm(): void {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{}[\]|\:;"'<>,.?/]).{8,}$/;
     this.form = this.fb.group({
-      username: ["", [Validators.required]],
-      password: ["", [Validators.required]]
-    })
+      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
+    });
   }
 
   constructor(private fb: FormBuilder, private authService: AuthService,
@@ -32,21 +35,21 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  login(): void{
-    if(this.form.invalid){
+  login(): void {
+    if(this.form.invalid) {
       return Object.values(this.form.controls).forEach((controls) => {
         controls.markAllAsTouched();
-      })
+      });
     }
 
     this.authService.login(this.form.value).subscribe((resp) => {
-      if(resp.isSuccess){
+      if(resp.isSuccess) {
         this.router.navigate(["/"]);
       }
-    })
+    });
   }
 
-  toggleVisibility() {
+  toggleVisibility(): void {
     if (this.visible) {
       this.inputType = "password";
       this.visible = false;
@@ -58,4 +61,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  forgotPassword(): void {
+    this.forgotPasswordClicked = true;
+    this.forgotPasswordMessage = 'Para poder Restablecer tu Password debes comunicarte al correo de soporte nominaumg@gmail.com';
+  }
 }

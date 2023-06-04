@@ -23,7 +23,19 @@
       padding: 0;
     }
   }
+  .forgot-password {
+    text-align: center;
+    margin-top: 10px;
+  }
   
+  .forgot-password a {
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .forgot-password a:hover {
+    color: darkblue;
+  }
   .login {
     position: fixed;
     z-index: 3;
@@ -89,4 +101,22 @@
     position: relative;
     color: #222222;
   }
+  
+  button.forgot-password-button {
+    background-color: transparent;
+    border: none;
+    color: red; /* Cambiar el color aquí */
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .forgot-password-message {
+    color: red; /* Cambia el color a tu preferencia */
+  }
+  
+  .email-link {
+    text-decoration: underline;
+  }
+  
   
