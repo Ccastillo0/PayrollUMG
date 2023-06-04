@@ -78,6 +78,13 @@ const childrenRoutes: VexRoutes = [
     }
   },
   {
+    path: 'PayrollAccounting',
+    loadChildren: () => import('./pages/payrollaccounting/payrollaccounting.module').then(m => m.PayrollAccountingModule),
+    data: {
+      containerEnabled: true
+    }
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

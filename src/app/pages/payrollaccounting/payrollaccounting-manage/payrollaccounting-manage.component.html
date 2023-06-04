@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+        <h2 class="headline m-0 text-xl text-accent" fxFlex="auto">
+            <strong>Gestion de Position</strong>
+        </h2>
+        <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+            <mat-icon [icIcon]="icClose"></mat-icon>
+        </button>
+        
+    </div>
+    <mat-dialog-content>
+
+        <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>PositionName</mat-label>
+                <input matInput formControlName="positionName">
+                <mat-error *ngIf="form.get('positionName').hasError('required')">
+                  PositionName Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('positionName').hasError('pattern')">
+                    Solo se pueden ingresar letras
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+       
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button"> CANCELAR </button>
+        <button color="purple" class="bg-accent text-accent-contrast" mat-button type="submit" [disabled]="!form.valid">
+            GUARDAR
+        </button>
+    </mat-dialog-actions>
+</form>

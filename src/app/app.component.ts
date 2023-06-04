@@ -116,6 +116,12 @@ export class AppComponent {
         route: 'PayrollDetail',
         icon: icUser
       },
+      {
+        type: 'link',
+        label: 'PayrollAccounting',
+        route: 'PayrollAccounting',
+        icon: icUser
+      },
     ];
   }
 }

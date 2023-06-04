@@ -70,8 +70,10 @@ export const endpoint ={
     PAYROLL_REGISTER: 'Payroll/Register',
     PAYROLL_EDIT: 'Payroll/Edit/',
     PAYROLL_REMOVE: 'Payroll/Remove/',
+
+    //PAYRROLLACCOUNTING
+    LIST_PAYRROLLACCOUNTING: 'PayrollAccounting',
 }
-//fff
 export const httpOptions={
     headers: new HttpHeaders({
         "Content-Type": "application/json"

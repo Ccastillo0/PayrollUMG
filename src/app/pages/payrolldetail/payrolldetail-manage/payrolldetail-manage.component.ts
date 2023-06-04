@@ -109,9 +109,7 @@ export class PayrolldetailManageComponent implements OnInit {
     })
 
   }
-  //agregadoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 
-  //agregadoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
   
 }
